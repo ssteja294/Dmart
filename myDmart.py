@@ -6,12 +6,12 @@ DbConnection = mysql.connector.connect(host='138.68.140.83', user='saiteja', pas
 DbCursor = DbConnection.cursor()
 
 
-def LoadFields():
+def loadItemFields():
   DbCursor.execute("SHOW COLUMNS FROM Item")
   global Fields
   Fields = [FieldName[0] for FieldName in DbCursor.fetchall()]
 
-def PrintItems():
+def printItems():
   DbCursor.execute("SELECT * FROM Item")
   Items = DbCursor.fetchall()
   for Item in Items:
@@ -19,5 +19,5 @@ def PrintItems():
       print(f"{Field}: {Item[FieldCounter]}")
     print("\n")
 
-LoadFields()
-PrintItems()
+loadItemFields()
+printItems()
